@@ -21,16 +21,16 @@ public class Materia {
     @ManyToMany
     @JoinTable(
             name = "alumno_materia",
-            joinColumns = @JoinColumn(name = "idMateria", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "idAlumno", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "id_materia", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_alumno", referencedColumnName = "id")
     )
     private List<Alumno> alumnos = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
             name = "profesor_materia",
-            joinColumns = @JoinColumn(name = "idMateria", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "idProfesor", referencedColumnName = "id")
+            joinColumns = @JoinColumn(name = "id_materia", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id_profesor", referencedColumnName = "id")
     )
     private List<Profesor> profesores = new ArrayList<>();
 

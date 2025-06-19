@@ -9,10 +9,10 @@ public class Evaluacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "idAlumno")
+    @JoinColumn(name = "id_alumno")
     private Alumno alumno;
     @ManyToOne
-    @JoinColumn(name = "idMateria")
+    @JoinColumn(name = "id_materia")
     private Materia materia;
     private double cal1;
     private double cal2;

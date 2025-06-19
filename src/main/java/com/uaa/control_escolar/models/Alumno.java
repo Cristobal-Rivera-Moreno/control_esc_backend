@@ -20,7 +20,7 @@ public class Alumno {
     @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Evaluacion> evaluaciones = new ArrayList<>();
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "alumnos")
     private List<Materia> materias = new ArrayList<>();
 
     public Alumno() {
