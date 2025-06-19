@@ -23,6 +23,14 @@ public class Profesor {
 
     }
 
+    public List<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
+    }
+
     public Profesor(Long id, String nombre, String apellido, String telefono) {
         this.id = id;
         this.nombre = nombre;

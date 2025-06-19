@@ -12,8 +12,8 @@ public class Boleta {
     private Long id;
     private LocalDateTime fecha;
     @ManyToOne
-    @JoinColumn(name = "idAlumno", referencedColumnName = "id")
-    private Alumno idAlumno;
+    @JoinColumn(name = "id_alumno", referencedColumnName = "id")
+    private Alumno alumno;
     private double promedio;
 
     public Boleta() {
@@ -23,7 +23,7 @@ public class Boleta {
     public Boleta(Long id, LocalDateTime fecha, Alumno idAlumno, double promedio) {
         this.id = id;
         this.fecha = fecha;
-        this.idAlumno = idAlumno;
+        this.alumno = idAlumno;
         this.promedio = promedio;
     }
 
@@ -35,8 +35,8 @@ public class Boleta {
         return fecha;
     }
 
-    public Alumno getIdAlumno() {
-        return idAlumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
     public double getPromedio() {
@@ -51,8 +51,8 @@ public class Boleta {
         this.fecha = fecha;
     }
 
-    public void setIdAlumno(Alumno idAlumno) {
-        this.idAlumno = idAlumno;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     public void setPromedio(double promedio) {

@@ -17,8 +17,19 @@ public class EvaluacionService {
         return evaluacionRepository.findAll();
     }
 
-    public Evaluacion createEvalucion(Evaluacion evaluacion) {
+    public Evaluacion createEvaluacion(Evaluacion evaluacion) {
+        if (getEvaluaciones().size() > 0) {
+            for (Evaluacion ev : getEvaluaciones()) {
+                if (ev.getAlumno().getId() == evaluacion.getAlumno().getId()) {
+                    ev = evaluacion;
+                    evaluacionRepository.save(ev);
+                    return ev;
+                }
+            }
+
+        }
         return evaluacionRepository.save(evaluacion);
+
     }
 
     public Evaluacion getEvaluacionById(Long id) {

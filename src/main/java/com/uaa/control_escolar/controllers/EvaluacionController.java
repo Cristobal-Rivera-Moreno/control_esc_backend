@@ -1,8 +1,6 @@
 package com.uaa.control_escolar.controllers;
 
 import com.uaa.control_escolar.models.Evaluacion;
-import com.uaa.control_escolar.models.Profesor;
-import com.uaa.control_escolar.repositories.EvaluacionRepository;
 import com.uaa.control_escolar.services.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ public class EvaluacionController {
 
     @PostMapping
     public Evaluacion createEvaluacion(@RequestBody Evaluacion evaluacion) {
-        return evaluacionService.createEvalucion(evaluacion);
+        return evaluacionService.createEvaluacion(evaluacion);
     }
 
     @GetMapping("/{id}")

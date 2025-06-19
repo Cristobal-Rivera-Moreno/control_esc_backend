@@ -1,9 +1,13 @@
 package com.uaa.control_escolar.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "alumno")
@@ -21,21 +25,10 @@ public class Alumno {
     private List<Evaluacion> evaluaciones = new ArrayList<>();
 
     @ManyToMany(mappedBy = "alumnos")
-    private List<Materia> materias = new ArrayList<>();
+    private Set<Materia> materias = new HashSet<>();
 
     public Alumno() {
 
-    }
-
-    public Alumno(Long id, String nombre, String apellido, String email, int tipo, int edad, List<Evaluacion> evaluaciones, List<Materia> materias) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.tipo = tipo;
-        this.edad = edad;
-        this.evaluaciones = evaluaciones;
-        this.materias = materias;
     }
 
     public Alumno(Long id, String nombre, String apellido) {
@@ -51,6 +44,22 @@ public class Alumno {
         this.email = email;
         this.tipo = tipo;
         this.edad = edad;
+    }
+
+    public void setEvaluaciones(List<Evaluacion> evaluaciones) {
+        this.evaluaciones = evaluaciones;
+    }
+
+    public void setMaterias(Set<Materia> materias) {
+        this.materias = materias;
+    }
+
+    public List<Evaluacion> getEvaluaciones() {
+        return evaluaciones;
+    }
+
+    public Set<Materia> getMaterias() {
+        return materias;
     }
 
     public Long getId() {

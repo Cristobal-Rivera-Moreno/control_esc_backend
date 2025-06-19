@@ -1,7 +1,9 @@
 package com.uaa.control_escolar.services;
 
 import com.uaa.control_escolar.models.Alumno;
+import com.uaa.control_escolar.models.Materia;
 import com.uaa.control_escolar.models.Profesor;
+import com.uaa.control_escolar.repositories.MateriaRepository;
 import com.uaa.control_escolar.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +18,21 @@ public class ProfesorService {
     @Autowired
     private ProfesorRepository profesorRepository;
 
+    @Autowired
+    private MateriaRepository materiaRepository;
+
+
     public List<Profesor> getProfesores() {
         return profesorRepository.findAll();
     }
 
     public Profesor createProfesor(Profesor profesor) {
+        if (profesor.getMaterias() != null)
+            for (Materia materia: profesor.getMaterias()){
+                Optional<Materia> materiaRepo = materiaRepository.findById(materia.getId());
+                materiaRepo.ifPresent(value -> profesor.getMaterias().add(value));
+            }
+
         return profesorRepository.save(profesor);
     }
 
