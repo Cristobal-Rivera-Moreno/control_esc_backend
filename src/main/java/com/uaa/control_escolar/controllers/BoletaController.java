@@ -29,4 +29,9 @@ public class BoletaController {
     public Boleta getBoletaById(@PathVariable Long id) {
         return boletaService.getBoletaById(id);
     }
+
+    @GetMapping("/alumno/{id}")
+    public Boleta getBoletaByAlumnoId(@PathVariable Long id) {
+        return boletaService.getBoletaByAlumnoId(id);
+    }
 }

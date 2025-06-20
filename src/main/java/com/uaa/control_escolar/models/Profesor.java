@@ -2,52 +2,51 @@ package com.uaa.control_escolar.models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "profesor")
 public class Profesor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idProfesor")
+    private Long idProfesor;
     private String nombre;
     private String apellido;
     private String telefono;
     private String email;
 
-    @ManyToMany(mappedBy = "profesores")
-    private List<Materia> materias;
+    @ManyToOne
+    @JoinColumn(name = "id_materia", referencedColumnName = "idMateria")
+    private Materia materia;
 
     public Profesor() {
 
     }
 
-    public List<Materia> getMaterias() {
-        return materias;
+    public Materia getMateria() {
+        return materia;
     }
 
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
 
     public Profesor(Long id, String nombre, String apellido, String telefono) {
-        this.id = id;
+        this.idProfesor = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
     }
 
     public Profesor(Long id, String nombre, String apellido, String telefono, String email) {
-        this.id = id;
+        this.idProfesor = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdProfesor() {
+        return idProfesor;
     }
 
     public String getNombre() {
@@ -62,8 +61,8 @@ public class Profesor {
         return telefono;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdProfesor(Long idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     public String getEmail() {

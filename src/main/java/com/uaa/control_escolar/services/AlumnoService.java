@@ -7,7 +7,6 @@ import com.uaa.control_escolar.repositories.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +24,10 @@ public class AlumnoService {
 
     public Alumno createAlumno(Alumno alumno){
 
-        if (alumno.getMaterias() != null)
-            for (Materia materia: alumno.getMaterias()){
-                Optional<Materia> materiaRepo = materiaRepository.findById(materia.getId());
-                materiaRepo.ifPresent(value -> alumno.getMaterias().add(value));
-            }
+        if (alumno.getMateria() != null) {
+            Optional<Materia> materiaRepo = materiaRepository.findById(alumno.getMateria().getIdMateria());
+            materiaRepo.ifPresent(alumno::setMateria);
+        }
 
         return alumnoRepository.save(alumno);
     }

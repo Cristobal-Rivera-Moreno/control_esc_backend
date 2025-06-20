@@ -9,26 +9,36 @@ import java.time.LocalDateTime;
 public class Boleta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idBoleta")
+    private Long idBoleta;
     private LocalDateTime fecha;
     @ManyToOne
-    @JoinColumn(name = "id_alumno", referencedColumnName = "id")
+    @JoinColumn(name = "id_alumno", referencedColumnName = "idAlumno")
     private Alumno alumno;
     private double promedio;
+    private boolean asistencia;
+
+    public boolean isAsistencia() {
+        return asistencia;
+    }
+
+    public void setAsistencia(boolean asistencia) {
+        this.asistencia = asistencia;
+    }
 
     public Boleta() {
 
     }
 
     public Boleta(Long id, LocalDateTime fecha, Alumno idAlumno, double promedio) {
-        this.id = id;
+        this.idBoleta = id;
         this.fecha = fecha;
         this.alumno = idAlumno;
         this.promedio = promedio;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdBoleta() {
+        return idBoleta;
     }
 
     public LocalDateTime getFecha() {
@@ -43,8 +53,8 @@ public class Boleta {
         return promedio;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdBoleta(Long idBoleta) {
+        this.idBoleta = idBoleta;
     }
 
     public void setFecha(LocalDateTime fecha) {

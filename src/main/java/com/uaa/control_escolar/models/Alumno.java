@@ -1,44 +1,44 @@
 package com.uaa.control_escolar.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "alumno")
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idAlumno")
+    private Long idAlumno;
     private String nombre;
     private String apellido;
     private String email;
     private int tipo;
     private int edad;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Evaluacion> evaluaciones = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "alumnos")
-    private Set<Materia> materias = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "id_materia", referencedColumnName = "idMateria")
+    private Materia materia;
 
     public Alumno() {
 
     }
 
     public Alumno(Long id, String nombre, String apellido) {
-        this.id = id;
+        this.idAlumno = id;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
     public Alumno(Long id, String nombre, String apellido, String email, int tipo, int edad) {
-        this.id = id;
+        this.idAlumno = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -50,20 +50,21 @@ public class Alumno {
         this.evaluaciones = evaluaciones;
     }
 
-    public void setMaterias(Set<Materia> materias) {
-        this.materias = materias;
-    }
 
     public List<Evaluacion> getEvaluaciones() {
         return evaluaciones;
     }
 
-    public Set<Materia> getMaterias() {
-        return materias;
+    public Materia getMateria() {
+        return materia;
     }
 
-    public Long getId() {
-        return id;
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public Long getIdAlumno() {
+        return idAlumno;
     }
 
     public String getApellido() {
@@ -74,8 +75,8 @@ public class Alumno {
         return nombre;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdAlumno(Long idAlumno) {
+        this.idAlumno = idAlumno;
     }
 
     public String getEmail() {

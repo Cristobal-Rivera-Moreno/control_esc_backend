@@ -1,5 +1,6 @@
 package com.uaa.control_escolar.controllers;
 
+import com.uaa.control_escolar.models.Boleta;
 import com.uaa.control_escolar.models.Evaluacion;
 import com.uaa.control_escolar.services.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class EvaluacionController {
     @GetMapping("/{id}")
     public Evaluacion getEvaluacionById(@PathVariable Long id) {
         return evaluacionService.getEvaluacionById(id);
+    }
+
+    @GetMapping("/alumno/{id}")
+    public Evaluacion getEvaluacionByAlumnoId(@PathVariable Long id) {
+        return evaluacionService.getEvaluacionByAlumnoId(id);
     }
 }

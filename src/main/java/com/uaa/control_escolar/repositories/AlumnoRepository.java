@@ -8,7 +8,4 @@ import java.util.List;
 
 public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
 
-    @Override
-    @Query("SELECT a,m FROM Alumno a JOIN a.materias m WHERE a.id = m.id")
-    List<Alumno> findAll();
 }

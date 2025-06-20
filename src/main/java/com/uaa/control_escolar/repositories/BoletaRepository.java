@@ -8,7 +8,4 @@ import java.util.List;
 
 public interface BoletaRepository extends JpaRepository<Boleta,Long> {
 
-    @Override
-    @Query("SELECT b,a FROM Boleta b JOIN b.alumno a WHERE a.id = b.id")
-    List<Boleta> findAll();
 }

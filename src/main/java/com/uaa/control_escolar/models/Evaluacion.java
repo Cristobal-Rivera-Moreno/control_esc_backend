@@ -7,12 +7,13 @@ import jakarta.persistence.*;
 public class Evaluacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "id_alumno")
+    @Column(name = "idEvaluacion")
+    private Long idEvaluacion;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_alumno" , referencedColumnName = "idAlumno")
     private Alumno alumno;
     @ManyToOne
-    @JoinColumn(name = "id_materia")
+    @JoinColumn(name = "id_materia", referencedColumnName = "idMateria")
     private Materia materia;
     private double cal1;
     private double cal2;
@@ -23,7 +24,7 @@ public class Evaluacion {
     }
 
     public Evaluacion(Long id,Alumno idAlumno, Materia idMateria, double cal1, double cal2, double cal3) {
-        this.id = id;
+        this.idEvaluacion = id;
         this.alumno = idAlumno;
         this.materia = idMateria;
         this.cal1 = cal1;
@@ -47,12 +48,12 @@ public class Evaluacion {
         this.cal1 = cal1;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdEvaluacion() {
+        return idEvaluacion;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdEvaluacion(Long idEvaluacion) {
+        this.idEvaluacion = idEvaluacion;
     }
 
     public void setCal2(double cal2) {
